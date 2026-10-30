@@ -93,10 +93,10 @@ jobs:
           echo "=== 3. Packaging all partition images with dereference (-h) ==="
           tar -chvf - -C rockdev . | pigz -p 4 > release-output/armsom-cm5-rk3576-ubuntu24-server-${DATE_TAG}-all-partitions.tar.gz
 
-          echo "=== 4. Collecting Linux Kernel deb packages for hot-upgrade ==="
+          echo "=== 4. Collecting Linux Kernel deb packages (including debug symbols) ==="
           cp -v linux-image-6.1*.deb release-output/ 2>/dev/null || true
           cp -v linux-headers-6.1*.deb release-output/ 2>/dev/null || true
-          rm -f release-output/*-dbg*.deb 2>/dev/null || true
+          cp -v linux-libc-dev_*.deb release-output/ 2>/dev/null || true
 
           echo "=== Release Output Summary ==="
           ls -lh release-output/
