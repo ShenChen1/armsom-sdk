@@ -40,10 +40,11 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             git git-lfs build-essential gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
             bison flex libssl-dev libncurses5-dev libncurses-dev bc libelf-dev \
+            libmpc-dev libgmp-dev lz4 python3-lz4 fakeroot \
             rsync u-boot-tools device-tree-compiler python3 python3-pyelftools \
             python3-setuptools python3-pip python-is-python3 kmod cpio dosfstools \
             mtools fdisk parted debian-archive-keyring debootstrap qemu-user-static \
-            pigz tree
+            binfmt-support pigz tree
 
       - name: Checkout armsom-sdk
         uses: actions/checkout@v4
