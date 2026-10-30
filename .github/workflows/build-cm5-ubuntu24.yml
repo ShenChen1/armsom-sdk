@@ -80,24 +80,32 @@ jobs:
       - name: Package firmware artifacts
         run: |
           mkdir -p release-output
-          FIRMWARE_DIR="rockdev"
-          [ -d "$FIRMWARE_DIR" ] || FIRMWARE_DIR="output/firmware"
-          cd "$FIRMWARE_DIR"
-          ls -lh
-          tar -cvf - * | pigz -p 4 > "$GITHUB_WORKSPACE/release-output/armsom-cm5-rk3576-ubuntu24-server-$(date +%Y%m%d_%H%M%S).tar.gz"
+          DATE_TAG="$(date +%Y%m%d_%H%M%S)"
+
+          echo "=== 1. Compressing update.img with dereferenced symlink ==="
+          pigz -c -9 rockdev/update.img > release-output/armsom-cm5-rk3576-ubuntu24-server-${DATE_TAG}-update.img.gz
+
+          echo "=== 2. Generating MD5 checksum ==="
+          cd release-output
+          md5sum armsom-cm5-rk3576-ubuntu24-server-${DATE_TAG}-update.img.gz > armsom-cm5-rk3576-ubuntu24-server-${DATE_TAG}-update.img.gz.md5
           cd "$GITHUB_WORKSPACE"
+
+          echo "=== 3. Packaging all partition images with dereference (-h) ==="
+          tar -chvf - -C rockdev . | pigz -p 4 > release-output/armsom-cm5-rk3576-ubuntu24-server-${DATE_TAG}-all-partitions.tar.gz
+
+          echo "=== Release Output Summary ==="
           ls -lh release-output/
 
       - name: Upload firmware artifacts
         uses: actions/upload-artifact@v4
         with:
           name: armsom-cm5-rk3576-ubuntu24-server-firmware
-          path: release-output/*.tar.gz
+          path: release-output/*
           retention-days: 7
 
       - name: Release to GitHub Releases
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: release-output/*.tar.gz
+          files: release-output/*
           generate_release_notes: true
