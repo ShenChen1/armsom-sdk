@@ -15,8 +15,8 @@
 
 [submodule "kernel-6.1"]
 	path = kernel-6.1
-	url = https://github.com/armsom/rockchip-kernel.git
-	branch = linux-6.1-stan-rkr6.1
+	url = https://github.com/ShenChen1/rockchip-kernel.git
+	branch = main
 
 [submodule "rkbin"]
 	path = rkbin
