@@ -1,0 +1,18 @@
+# SDK Build outputs
+output/
+rockdev
+*.deb
+*.buildinfo
+*.changes
+*.img
+*.iso
+*.tar.gz
+*.tar.xz
+
+# Repo tool directory
+.repo/
+
+# Temp files
+*.tmp
+*~
+.#*

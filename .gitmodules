@@ -1,0 +1,59 @@
+[submodule "device/rockchip"]
+	path = device/rockchip
+	url = https://github.com/ShenChen1/device_rockchip.git
+	branch = main
+
+[submodule "u-boot"]
+	path = u-boot
+	url = https://github.com/ShenChen1/u-boot.git
+	branch = main
+
+[submodule "ubuntu24.04"]
+	path = ubuntu24.04
+	url = https://github.com/ShenChen1/ubuntu24.04.git
+	branch = main
+
+[submodule "kernel-6.1"]
+	path = kernel-6.1
+	url = https://github.com/armsom/rockchip-kernel.git
+	branch = linux-6.1-stan-rkr6.1
+
+[submodule "rkbin"]
+	path = rkbin
+	url = https://github.com/armsom/rkbin.git
+	branch = main
+
+[submodule "armsom-initrd"]
+	path = armsom-initrd
+	url = https://github.com/armsom/armsom-initrd.git
+	branch = main
+
+[submodule "tools"]
+	path = tools
+	url = https://github.com/armsom/tools.git
+	branch = main
+
+[submodule "prebuilts/gcc/linux-x86/aarch64/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu"]
+	path = prebuilts/gcc/linux-x86/aarch64/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu
+	url = https://github.com/armsom/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.git
+	branch = main
+
+[submodule "ubuntu22.04"]
+	path = ubuntu22.04
+	url = https://github.com/armsom/ubuntu22.04.git
+	branch = main
+
+[submodule "debian11"]
+	path = debian11
+	url = https://github.com/armsom/debian11.git
+	branch = main
+
+[submodule "debian12"]
+	path = debian12
+	url = https://github.com/armsom/debian12.git
+	branch = main
+
+[submodule "kernel-5.10"]
+	path = kernel-5.10
+	url = https://github.com/armsom/rockchip-kernel5.10.git
+	branch = main
