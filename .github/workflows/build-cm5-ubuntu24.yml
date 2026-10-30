@@ -66,7 +66,7 @@ jobs:
         run: |
           cd ubuntu24.04
           git lfs pull
-          ls -lh packages/arm64/mali/
+          ls -lh packages/arm64/libmali/
 
       - name: Configure board defconfig
         run: |
@@ -79,10 +79,12 @@ jobs:
       - name: Package firmware artifacts
         run: |
           mkdir -p release-output
-          cd rockdev
+          FIRMWARE_DIR="rockdev"
+          [ -d "$FIRMWARE_DIR" ] || FIRMWARE_DIR="output/firmware"
+          cd "$FIRMWARE_DIR"
           ls -lh
-          tar -cvf - * | pigz -p 4 > ../release-output/armsom-cm5-rk3576-ubuntu24-server-$(date +%Y%m%d_%H%M%S).tar.gz
-          cd ..
+          tar -cvf - * | pigz -p 4 > "$GITHUB_WORKSPACE/release-output/armsom-cm5-rk3576-ubuntu24-server-$(date +%Y%m%d_%H%M%S).tar.gz"
+          cd "$GITHUB_WORKSPACE"
           ls -lh release-output/
 
       - name: Upload firmware artifacts
